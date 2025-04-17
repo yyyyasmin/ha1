@@ -135,6 +135,26 @@ class CalculatorTest {
 
 
 
+    //TEILAUFGABE 2: zweiter roter Test
+
+    @Test
+    @DisplayName("soll die Berechnung wiederholen, wenn in der Konsole = eingegeben wird")
+    void testBerechnungWiederholen() {
+        Calculator calc = new Calculator();
+
+        calc.pressDigitKey(2);
+        calc.pressBinaryOperationKey("x");
+        calc.pressDigitKey(2);
+        calc.pressEqualsKey();      //(2x2 = 4)
+        calc.pressEqualsKey();      //(4x2 = 8)
+        calc.pressEqualsKey();      //(8x2 = 16)
+
+        String expected = "16";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+    }
+
 
 
 

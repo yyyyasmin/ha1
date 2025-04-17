@@ -8,6 +8,11 @@ package htw.berlin.prog2.ha1;
  */
 public class Calculator {
 
+
+    private double lastOperand = 0.0;
+
+    private boolean isRepeat = false;
+
     private String screen = "0";
 
     private double latestValue;
@@ -60,8 +65,15 @@ public class Calculator {
      * @param operation "+" für Addition, "-" für Substraktion, "x" für Multiplikation, "/" für Division
      */
     public void pressBinaryOperationKey(String operation)  {
+
+        if(!latestOperation.isEmpty()){
+            pressEqualsKey();
+        }
+
         latestValue = Double.parseDouble(screen);
         latestOperation = operation;
+
+        isRepeat = false;
     }
 
     /**
@@ -118,6 +130,19 @@ public class Calculator {
      * und das Ergebnis direkt angezeigt.
      */
     public void pressEqualsKey() {
+        double value = Double.parseDouble(screen);
+
+
+        if(isRepeat == false) {
+            lastOperand = value;
+            isRepeat = true;
+        }else {
+            latestValue = value;
+            value = lastOperand;
+        }
+
+
+
         var result = switch(latestOperation) {
             case "+" -> latestValue + Double.parseDouble(screen);
             case "-" -> latestValue - Double.parseDouble(screen);

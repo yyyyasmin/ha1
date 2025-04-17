@@ -90,7 +90,7 @@ class CalculatorTest {
 
 
 
-
+    //TEILAUFGABE 1
 
     @Test
     @DisplayName("kehrt das Vorzeichen der Zahl um")
@@ -105,12 +105,46 @@ class CalculatorTest {
         String expected = "-23";
         String actual = calc.readScreen();
 
-        if(expected.equals(actual)){
-            System.out.println("NegativeKey: " + actual);
-        }
-        else{
-            System.out.println("NegativeKey: Erwartung = " + expected + "\nkorrekte Ausgabe: " + actual);
-        }
+        assertEquals(expected, actual);
+
     }
+
+
+
+    //TEILAUFGABE 2: erster roter Test
+
+
+    @Test
+    @DisplayName("soll die Berechnung weiterführen, wenn man binaryOperations hinzufügt")
+    void testBerechnungWeiterfuehren(){
+        Calculator calc = new Calculator();
+
+        calc.pressDigitKey(2);
+        calc.pressBinaryOperationKey("x");
+        calc.pressDigitKey(2);                  //(2x2 = 4)
+
+        calc.pressBinaryOperationKey("x");
+        calc.pressDigitKey(3);                  // (4x3 = 12)
+        calc.pressEqualsKey();
+
+        String expected = "12";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 }
 

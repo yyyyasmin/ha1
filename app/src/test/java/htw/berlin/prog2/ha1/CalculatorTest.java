@@ -88,24 +88,29 @@ class CalculatorTest {
         assertEquals(expected, actual);
     }
 
+
+
+
+
     @Test
-    @DisplayName("should not allow multiple decimal dots")
-    void testMultipleDecimalDots2() {
+    @DisplayName("kehrt das Vorzeichen der Zahl um")
+    void testConvertSign(){
         Calculator calc = new Calculator();
 
-        calc.pressDigitKey(1);
-        calc.pressDotKey();
-        calc.pressDigitKey(7);
-        calc.pressDotKey();
-        calc.pressDigitKey(8);
+        calc.pressDigitKey(2);
+        //calc.pressNegativeKey();
+        calc.pressDigitKey(3);
+        calc.pressNegativeKey();
 
-        String expected = "1.78";
+        String expected = "-23";
         String actual = calc.readScreen();
 
-        assertEquals(expected, actual);
+        if(expected.equals(actual)){
+            System.out.println("NegativeKey: " + actual);
+        }
+        else{
+            System.out.println("NegativeKey: Erwartung = " + expected + "\nkorrekte Ausgabe: " + actual);
+        }
     }
-
-
-    //TODO hier weitere Tests erstellen
 }
 

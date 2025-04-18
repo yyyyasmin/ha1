@@ -117,6 +117,7 @@ public class Calculator {
      * entfernt und der Inhalt fortan als positiv interpretiert.
      */
     public void pressNegativeKey() {
+
         screen = screen.startsWith("-") ? screen.substring(1) : "-" + screen;
     }
 
@@ -144,10 +145,10 @@ public class Calculator {
 
 
         var result = switch(latestOperation) {
-            case "+" -> latestValue + Double.parseDouble(screen);
-            case "-" -> latestValue - Double.parseDouble(screen);
-            case "x" -> latestValue * Double.parseDouble(screen);
-            case "/" -> latestValue / Double.parseDouble(screen);
+            case "+" -> latestValue + lastOperand;
+            case "-" -> latestValue - lastOperand;
+            case "x" -> latestValue * lastOperand;
+            case "/" -> latestValue / lastOperand;
             default -> throw new IllegalArgumentException();
         };
         screen = Double.toString(result);
